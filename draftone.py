@@ -5,6 +5,7 @@ A way to write, one line at a time
 """
 
 import argparse
+import os
 
 
 def handle_args():
@@ -14,21 +15,22 @@ def handle_args():
     return parser.parse_args()
 
 
-def load_file(file):
-    """Open file for writing and create a new file if it does not exist"""
-    return open(file, 'a+')
-
-
 def main():
     """Main"""
     args = handle_args()
-    story_file = load_file(args.story_file)
+    story_file = open(args.story_file, 'a+')
     story = []
 
-    writing = True
-    while writing:
+    # Let's start with a fresh screen
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-        print('(q)uit and save, (p)revious line, (n)ew paragraph')
+    writing = True
+
+    while writing:
+        print('-- draftone v. 1.0 --')
+        print('Type a sentence and hit enter\n(q)uit and save, (p)revious line, (n)ew paragraph')
+
+        # Take input
         line = input()
         if line == 'q':
             complete = ''.join(story)
@@ -46,10 +48,15 @@ def main():
         elif line == 'p':
             print(story[-1])
         else:
+            # Clear screen in between entries
+            os.system('cls' if os.name == 'nt' else 'clear')
+
             if line == 'n':
                 line = '\n'
-            story.append(line + ' ')
-            story_file.write(line + ' ')
+            else:
+                line = line + ' '
+            story.append(line)
+            story_file.write(line)
 
     quit()
 
