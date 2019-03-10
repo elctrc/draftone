@@ -18,47 +18,46 @@ def handle_args():
 def main():
     """Main"""
     args = handle_args()
-    story_file = open(args.story_file, 'a+')
-    story = []
 
-    # Let's start with a fresh screen
-    os.system('cls' if os.name == 'nt' else 'clear')
+    with open(args.story_file, 'a+') as story_file:
+        story = []
 
-    writing = True
+        # Let's start with a fresh screen
+        os.system('cls' if os.name == 'nt' else 'clear')
 
-    while writing:
-        print('-- draftone v. 1.0 --')
-        print('Type a sentence and hit enter\n(q)uit and save, (p)revious line, (n)ew paragraph\n')
+        writing = True
 
-        # Take input
-        line = input('>> ')
-        if line == 'q':
-            complete = ''.join(story)
-            print('--- New Text ---')
-            print('\n(Character Count: {})\n'.format(len(complete)))
-            print(complete)
-            print('--- Complete Text ---')
-            # @TODO: Print complete text of file
+        while writing:
+            print('-- draftone v. 1.0 --')
+            print('Type a sentence and hit enter\n(q)uit and save, (p)revious line, (n)ew paragraph\n')
 
-            # Write a line break at the end
-            story_file.write('\n\n')
-            # Close file
-            story_file.close()
-            writing = False
-        elif line == 'p':
-            print(story[-1])
-        else:
-            # Clear screen in between entries
-            os.system('cls' if os.name == 'nt' else 'clear')
+            # Take input
+            line = input('>> ')
+            if line == 'q':
+                complete = ''.join(story)
+                print('--- New Text ---')
+                print('\n(Character Count: {})\n'.format(len(complete)))
+                print(complete)
+                print('--- Complete Text ---')
+                # @TODO: Print complete text of file
 
-            if line == 'n':
-                line = '\n'
+                # Write a line break at the end
+                story_file.write('\n\n')
+                writing = False
+            elif line == 'p':
+                print(story[-1])
             else:
-                line = line + ' '
-            story.append(line)
-            story_file.write(line)
+                # Clear screen in between entries
+                os.system('cls' if os.name == 'nt' else 'clear')
 
-    quit()
+                if line == 'n':
+                    line = '\n'
+                else:
+                    line = line + ' '
+                story.append(line)
+                story_file.write(line)
+
+        quit()
 
 
 if __name__ == '__main__':
