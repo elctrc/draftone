@@ -28,16 +28,16 @@ def main():
 
     while writing:
         print('-- draftone v. 1.0 --')
-        print('Type a sentence and hit enter\n(q)uit and save, (p)revious line, (n)ew paragraph')
+        print('Type a sentence and hit enter\n(q)uit and save, (p)revious line, (n)ew paragraph\n')
 
         # Take input
-        line = input()
+        line = input('>> ')
         if line == 'q':
             complete = ''.join(story)
-            print("--- New Text ---")
-            print("\n(Character Count: {})\n".format(len(complete)))
+            print('--- New Text ---')
+            print('\n(Character Count: {})\n'.format(len(complete)))
             print(complete)
-            print("--- Complete Text ---")
+            print('--- Complete Text ---')
             # @TODO: Print complete text of file
 
             # Write a line break at the end
