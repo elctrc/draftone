@@ -37,6 +37,10 @@ def main():
             print(complete)
             print("--- Complete Text ---")
             # @TODO: Print complete text of file
+
+            # Write a line break at the end
+            story_file.write('\n\n')
+            # Close file
             story_file.close()
             writing = False
         elif line == 'p':
@@ -45,7 +49,7 @@ def main():
             if line == 'n':
                 line = '\n'
             story.append(line + ' ')
-            story_file.write(line)
+            story_file.write(line + ' ')
 
     quit()
 
