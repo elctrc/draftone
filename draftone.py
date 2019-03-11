@@ -19,6 +19,7 @@ def main():
     """Main"""
     args = handle_args()
 
+    # Open file to write an create new one if one does not exist
     with open(args.story_file, 'a+') as story_file:
         story = []
 
@@ -56,6 +57,7 @@ def main():
                     line = line + ' '
                 story.append(line)
                 story_file.write(line)
+                story_file.flush()
 
         quit()
 
