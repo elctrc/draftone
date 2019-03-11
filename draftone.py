@@ -11,6 +11,7 @@ import os
 def handle_args():
     """Time to parse some arguments"""
     parser = argparse.ArgumentParser()
+    #@TODO: Make optional. If no file is included, write to new file.
     parser.add_argument('story_file', help='location of story file to open')
     return parser.parse_args()
 
@@ -30,7 +31,7 @@ def main():
 
         while writing:
             print('-- draftone v. 1.0 --')
-            print('Type a sentence and hit enter\n(q)uit and save, (p)revious line, (n)ew paragraph\n')
+            print('Type a sentence and hit enter/return\n(q)uit and save, (p)revious line, enter/return for newline\n')
 
             # Take input
             line = input('>> ')
@@ -46,15 +47,21 @@ def main():
                 story_file.write('\n\n')
                 writing = False
             elif line == 'p':
-                print(story[-1])
+                try:
+                    print(story[-1])
+                except IndexError:
+                    print('No previous entry for this session.')
             else:
                 # Clear screen in between entries
                 os.system('cls' if os.name == 'nt' else 'clear')
 
-                if line == 'n':
+                # Create paragraph break or space
+                if line == '':
                     line = '\n'
                 else:
                     line = line + ' '
+
+                # Write to file
                 story.append(line)
                 story_file.write(line)
                 story_file.flush()
