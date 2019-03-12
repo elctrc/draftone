@@ -27,10 +27,19 @@ To run the program:
 python draftone.py new_document.txt
 ```
 
-Where "new_story.txt" is either a new filename for your document or one that
+Where "new_document.txt" is either a new filename for your document or one that
 already exists (the program will not overwrite but will append to it).
 
 Now get writing!
+
+*Options:*
+- Type "Enter" for a newline
+- Type "p" to see the previous line of text
+
+## notes on usage
+There is no spellchecker or even a way to go back and edit your work, unless
+you do it before hitting Enter. Once you quit and save, you will see your total
+word count (for what you added this session) along with a readout of the text.
 
 
 
