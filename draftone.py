@@ -1,7 +1,9 @@
 """
-draftone
+draftone 1.0
 
 A way to write, one line at a time
+
+https://github.com/elctrc
 """
 
 import argparse
